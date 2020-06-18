@@ -1,0 +1,9 @@
+footer {
+  height: 10rem;
+  background: linear-gradient(to left top, #f1c40f, #e67e22);
+  box-shadow: 2px -3px 6px rgba(0, 0, 0, 0.4);
+}
+footer:hover {
+  transition: 0.6s;
+  box-shadow: 2px -3px 12px rgba(0, 0, 0, 0.8);
+}

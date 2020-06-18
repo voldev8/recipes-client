@@ -1,0 +1,35 @@
+.navbar {
+  top: 0;
+  height: 4rem;
+  width: 100%;
+  background: linear-gradient(to right bottom, #f1c40f, #e67e22);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 1px 1px 8px #000000;
+  position: sticky;
+  z-index: 100;
+}
+.navbar:hover {
+  transition: 0.6s;
+  box-shadow: 1px 3px 12px #000000;
+}
+.navbar a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  margin: 0 2rem;
+}
+.navbar a img {
+  height: 3rem;
+  padding: 1rem;
+}
+
+.navbar a h2 {
+  font-weight: 700;
+  font-size: 2rem;
+  text-shadow: 2px 2px 4px black;
+  color: white;
+  font-style: italic;
+}
