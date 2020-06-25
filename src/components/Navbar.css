@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   box-shadow: 1px 1px 8px #000000;
   position: sticky;
   z-index: 100;
@@ -14,12 +15,29 @@
   transition: 0.6s;
   box-shadow: 1px 3px 12px #000000;
 }
+.pages {
+  display: flex;
+  margin-right: 1rem;
+}
 .navbar a {
   display: flex;
   flex-direction: row;
   align-items: center;
   text-decoration: none;
-  margin: 0 2rem;
+  margin: 0 1rem;
+}
+.pages a {
+  color: #f5f5f5;
+  font-size: 1.2rem;
+}
+.pages a:hover {
+  transition: 0.3s;
+  scale: 1.1;
+  text-shadow: 2px 3px #e74c3c;
+  transform: rotate(-3deg);
+}
+.pages a:nth-of-type(2):hover {
+  transform: rotate(3deg);
 }
 .navbar a img {
   height: 3rem;
