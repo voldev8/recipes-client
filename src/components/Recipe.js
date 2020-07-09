@@ -71,9 +71,12 @@ const Recipe = ({ recipe }) => {
         >
           Link
         </a>
-        <a className="recipe-card-outer-link" onClick={handleDelete}>
+        <button
+          className="recipe-card-outer-link delete-btn"
+          onClick={handleDelete}
+        >
           Delete
-        </a>
+        </button>
       </div>
     </div>
   );

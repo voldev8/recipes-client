@@ -1,13 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import RecipeContext from '../context/recipe/recipeContext';
 import Input from './Input';
 
 import './RecipeAdd.css';
+// import { Redirect, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-const RecipeAdd = () => {
+const RecipeAdd = (props) => {
   const recipeContext = useContext(RecipeContext);
-  const { addRecipe } = recipeContext;
+  const { recipes, addRecipe, getRecipes } = recipeContext;
 
   const [name, setName] = useState('');
   const [ingredients, setIngredients] = useState(['']);
@@ -18,23 +20,30 @@ const RecipeAdd = () => {
   );
   const [link, setLink] = useState('');
 
+  useEffect(() => {
+    getRecipes();
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      addRecipe({
-        name,
-        ingredients,
-        instructions,
-        tags,
-        image,
-        link,
-      });
-      window.location.reload();
+      const exists = recipes.some((recipe) => recipe.name === name);
+      if (!exists) {
+        addRecipe({
+          name,
+          ingredients,
+          instructions,
+          tags: tags.map((tag) => tag.toLowerCase()),
+          image,
+          link,
+        });
+        props.history.push('/recipes');
+      } else {
+        alert('exists');
+      }
     } catch (err) {
       console.log(err);
     }
   };
-
   return (
     <div className="recipe-form">
       <form className="recipe-add-form" onSubmit={handleSubmit}>
@@ -96,11 +105,15 @@ const RecipeAdd = () => {
           />
         </div>
         <div className="row">
-          <input class="recipe-add-submit" type="submit" value="Add Recipe!" />
+          <input
+            className="recipe-add-submit"
+            type="submit"
+            value="Add Recipe!"
+          />
         </div>
       </form>
     </div>
   );
 };
 
-export default RecipeAdd;
+export default withRouter(RecipeAdd);

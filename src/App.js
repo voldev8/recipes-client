@@ -1,8 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Recipelist from './components/Recipelist';
+import RecipeList from './components/RecipeList';
 import RecipeAdd from './components/RecipeAdd';
+import RecipeEdit from './components/RecipeEdit';
+import RecipeSearch from './components/RecipeSearch';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Test from './components/Test';
@@ -12,7 +14,6 @@ import RecipeState from './context/recipe/recipeState';
 import './App.css';
 
 const App = () => {
-  // const [recipes, setRecipes] = useState(null);
   // const [loading, setLoading] = useState(true);
   // useEffect(() => {
   //   getRecipes();
@@ -27,14 +28,15 @@ const App = () => {
   //   setRecipes(recipes);
   //   setLoading(false);
   // };
-
   return (
     <div className="App">
       <RecipeState>
         <Router>
           <Navbar />
+          <Route exact path="/recipes" component={RecipeList} />
           <Route exact path="/recipe-add" component={RecipeAdd} />
-          <Route exact path="/recipes" component={Recipelist} />
+          <Route exact path="/recipe-edit" component={RecipeEdit} />
+          <Route exact path="/recipe-search" component={RecipeSearch} />
           <Route exact path="/test" component={Test} />
           <Footer />
         </Router>

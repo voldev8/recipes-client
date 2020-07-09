@@ -9,12 +9,15 @@ import {
   ADD_RECIPE,
   UPDATE_RECIPE,
   DELETE_RECIPE,
+  SEARCH_RECIPE_BY_NAME,
+  SEARCH_RECIPE_BY_TAG,
 } from '../types';
 import { useReducer } from 'react';
 
 const RecipeState = (props) => {
   const initialState = {
-    recipes: null,
+    recipes: [],
+    filtered: null,
   };
 
   const [state, dispatch] = useReducer(recipeReducer, initialState);
@@ -49,6 +52,23 @@ const RecipeState = (props) => {
       console.log(error);
     }
   };
+  // Add Recipe
+  const updateRecipe = async (recipe) => {
+    try {
+      const res = await axios.put(`/recipes/${recipe._id}`, recipe, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      dispatch({
+        type: UPDATE_RECIPE,
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   // Delete Recipe
   const deleteRecipe = async (id) => {
     try {
@@ -62,10 +82,41 @@ const RecipeState = (props) => {
       console.log(error);
     }
   };
+  // Recipe Search by name
+  const searchRecipeByName = async (text) => {
+    try {
+      dispatch({
+        type: SEARCH_RECIPE_BY_NAME,
+        payload: text,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // Recipe Search by tag
+  const searchRecipeByTag = async (text) => {
+    try {
+      dispatch({
+        type: SEARCH_RECIPE_BY_TAG,
+        payload: text,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <recipeContext.Provider
-      value={{ recipes: state.recipes, getRecipes, addRecipe, deleteRecipe }}
+      value={{
+        recipes: state.recipes,
+        filtered: state.filtered,
+        getRecipes,
+        addRecipe,
+        updateRecipe,
+        deleteRecipe,
+        searchRecipeByName,
+        searchRecipeByTag,
+      }}
     >
       {props.children}
     </recipeContext.Provider>

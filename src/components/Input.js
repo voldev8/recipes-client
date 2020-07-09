@@ -1,4 +1,5 @@
 import React from 'react';
+import { CSSTransitionGroup } from 'react-transition-group';
 import './Input.css';
 
 const Input = ({ inps, fn, rowType }) => {
@@ -22,7 +23,12 @@ const Input = ({ inps, fn, rowType }) => {
     fn([...inps, '']);
   };
   return (
-    <div className="row">
+    <CSSTransitionGroup
+      className="row"
+      transitionName="fade"
+      transitionEnterTimeout={500}
+      transitionLeaveTimeout={300}
+    >
       <label htmlFor={rowType}>
         <p>{`${rowType}:`}</p>
       </label>
@@ -52,7 +58,7 @@ const Input = ({ inps, fn, rowType }) => {
           </div>
         </div>
       ))}
-    </div>
+    </CSSTransitionGroup>
   );
 };
 

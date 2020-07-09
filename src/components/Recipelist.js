@@ -1,26 +1,32 @@
 import React, { useContext, useEffect } from 'react';
 import Recipe from './Recipe.js';
+import Loading from './Loading.js';
 
 import RecipeContext from '../context/recipe/recipeContext';
 
-import './Recipelist.css';
+import './RecipeList.css';
 
-const Recipelist = () => {
+const RecipeList = () => {
   const recipeContext = useContext(RecipeContext);
 
-  const { recipes, getRecipes, loading } = recipeContext;
+  const { recipes, getRecipes, filtered } = recipeContext;
 
   useEffect(() => {
     getRecipes();
+
     // eslint-disable-next-line
   }, []);
   return (
     <div className="container">
-      {recipes !== null && !loading
-        ? recipes.map((recipe) => <Recipe key={recipe._id} recipe={recipe} />)
-        : 'loading'}
+      {filtered === null && recipes !== null ? (
+        recipes.map((recipe) => <Recipe key={recipe._id} recipe={recipe} />)
+      ) : filtered !== null ? (
+        filtered.map((recipe) => <Recipe key={recipe._id} recipe={recipe} />)
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };
 
-export default Recipelist;
+export default RecipeList;
