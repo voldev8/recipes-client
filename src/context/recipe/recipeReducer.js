@@ -1,5 +1,6 @@
 import {
   GET_RECIPES,
+  GET_RECIPE,
   ADD_RECIPE,
   UPDATE_RECIPE,
   DELETE_RECIPE,
@@ -11,6 +12,8 @@ export default (state, action) => {
   switch (action.type) {
     case GET_RECIPES:
       return { ...state, recipes: action.payload, loading: false };
+    case GET_RECIPE:
+      return { ...state, currentRecipe: action.payload, loading: false };
     case ADD_RECIPE:
       return {
         ...state,

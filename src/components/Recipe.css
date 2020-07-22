@@ -1,7 +1,6 @@
 .recipe-card-outer {
   margin: 1rem;
   width: 400px;
-  /* place-self: center; */
   animation: appear 0.3s ease-out;
 }
 .recipe-card {
@@ -46,7 +45,6 @@
   height: 400px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-around; */
 }
 .recipe-title {
   padding-top: 1rem;
@@ -142,8 +140,11 @@
   display: flex;
   justify-content: flex-end;
 }
-.recipe-card-buttons a,
-.delete-btn {
+.recipe-card-buttons a {
+  color: #f39c12;
+  text-decoration: none;
+}
+.recipe-btn {
   margin: 4px;
   padding: 0.3rem 1rem;
   border: 0.5px solid #2c3e50;
@@ -157,18 +158,54 @@
   cursor: pointer;
 }
 
-.recipe-card-buttons a:hover,
-.delete-btn:hover {
+.recipe-btn:hover {
   transition: 0.4s;
   border: 1px solid #000000;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.6);
   margin-bottom: 6px;
 }
-.recipe-card-buttons a:active,
-.delete-btn:active {
+
+.recipe-btn:active {
   margin-bottom: 0;
 }
-.delete-btn {
+.recipe-btn {
   font-size: 1rem;
   font-weight: 600;
+}
+
+@media (max-width: 35rem) {
+  .recipe-card-outer {
+    width: 90vw;
+  }
+  .recipe-card {
+    width: 90vw;
+    height: 75vh;
+  }
+  .recipe-card-img img {
+    height: 150px;
+  }
+  .recipe-card-content {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+  }
+  .recipe-card-front h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+  .recipe-card-back h4 {
+    font-size: 1.2rem;
+  }
+  .recipe-card-tags li {
+    font-weight: 500;
+    font-size: 10px;
+  }
+  .recipe-btn {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .recipe-card-buttons {
+    height: 80px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
 }

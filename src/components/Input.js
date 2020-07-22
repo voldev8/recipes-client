@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import './Input.css';
 
-const Input = ({ inps, fn, rowType }) => {
+const Input = ({ input_type, fn, rowType }) => {
+  const [focus, setFocus] = useState(false);
   // handle input change
   const handleInputChange = (e, idx) => {
-    const list = [...inps];
+    const list = [...input_type];
     list[idx] = e.target.value;
     fn(list);
   };
 
   //handle remove button
-  const handleRemoveClick = (idx) => {
-    const list = [...inps];
+  const handleRemoveClick = (e, idx) => {
+    e.preventDefault();
+    const list = [...input_type];
     list.splice(idx, 1);
     fn(list);
   };
@@ -20,8 +22,10 @@ const Input = ({ inps, fn, rowType }) => {
   // handle add button
   const handleAddClick = (e) => {
     e.preventDefault();
-    fn([...inps, '']);
+    fn([...input_type, '']);
+    setFocus(true);
   };
+
   return (
     <CSSTransitionGroup
       className="row"
@@ -32,32 +36,34 @@ const Input = ({ inps, fn, rowType }) => {
       <label htmlFor={rowType}>
         <p>{`${rowType}:`}</p>
       </label>
-      {inps.map((inp, idx) => (
-        <div className="input-row">
-          <span>{idx + 1}.</span>
-          <input
-            className="recipe-input"
-            type="text"
-            name={`${rowType}-${idx}`}
-            id={`${rowType}-${idx}`}
-            value={inp}
-            required
-            onChange={(e) => handleInputChange(e, idx)}
-          />
-          <div className="btns">
-            {inps.length !== 1 && (
-              <button onClick={() => handleRemoveClick(idx)}>
-                <p>&minus;</p>
-              </button>
-            )}
-            {inps.length - 1 === idx && (
-              <button onClick={handleAddClick}>
-                <p>&#43;</p>
-              </button>
-            )}
+      {input_type &&
+        input_type.map((inp, idx) => (
+          <div className="input-row" key={idx}>
+            <span>{idx + 1}.</span>
+            <input
+              className="recipe-input"
+              type="text"
+              name={`${rowType}-${idx}`}
+              id={`${rowType}-${idx}`}
+              value={inp}
+              autoFocus={focus}
+              required
+              onChange={(e) => handleInputChange(e, idx)}
+            />
+            <div className="btns">
+              {input_type.length !== 1 && (
+                <button onClick={(e) => handleRemoveClick(e, idx)}>
+                  <p>&minus;</p>
+                </button>
+              )}
+              {input_type.length - 1 === idx && (
+                <button onClick={handleAddClick}>
+                  <p>&#43;</p>
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </CSSTransitionGroup>
   );
 };

@@ -6,6 +6,7 @@ import recipeReducer from '../recipe/recipeReducer';
 
 import {
   GET_RECIPES,
+  GET_RECIPE,
   ADD_RECIPE,
   UPDATE_RECIPE,
   DELETE_RECIPE,
@@ -18,6 +19,8 @@ const RecipeState = (props) => {
   const initialState = {
     recipes: [],
     filtered: null,
+    currentRecipe: null,
+    loading: true,
   };
 
   const [state, dispatch] = useReducer(recipeReducer, initialState);
@@ -30,6 +33,19 @@ const RecipeState = (props) => {
       dispatch({
         type: GET_RECIPES,
         payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // Get Recipe
+  const getRecipe = async (id) => {
+    try {
+      const res = await axios.get(`/recipes/${id}`);
+
+      dispatch({
+        type: GET_RECIPE,
+        payload: res.data.data,
       });
     } catch (error) {
       console.log(error);
@@ -55,7 +71,7 @@ const RecipeState = (props) => {
   // Add Recipe
   const updateRecipe = async (recipe) => {
     try {
-      const res = await axios.put(`/recipes/${recipe._id}`, recipe, {
+      const res = await axios.put(`/recipes/${recipe.id}`, recipe, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -110,7 +126,10 @@ const RecipeState = (props) => {
       value={{
         recipes: state.recipes,
         filtered: state.filtered,
+        currentRecipe: state.currentRecipe,
+        loading: state.loading,
         getRecipes,
+        getRecipe,
         addRecipe,
         updateRecipe,
         deleteRecipe,

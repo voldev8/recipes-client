@@ -4,7 +4,6 @@
   width: 100%;
   background: linear-gradient(to right bottom, #f1c40f, #e67e22);
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   box-shadow: 1px 1px 8px #000000;
@@ -21,7 +20,6 @@
 }
 .navbar a {
   display: flex;
-  flex-direction: row;
   align-items: center;
   text-decoration: none;
   margin: 0 1rem;
@@ -50,4 +48,18 @@
   text-shadow: 2px 2px 4px black;
   color: white;
   font-style: italic;
+}
+.burger-menu {
+  display: none;
+}
+
+@media (max-width: 35rem) {
+  .navbar .logo h2,
+  .pages {
+    display: none;
+  }
+  .burger-menu {
+    padding: 0 1.4rem;
+    display: flex;
+  }
 }

@@ -4,10 +4,10 @@ import RecipeList from './RecipeList';
 
 const RecipeSearch = () => {
   return (
-    <div>
+    <>
       <Search />
       <RecipeList />
-    </div>
+    </>
   );
 };
 

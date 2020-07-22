@@ -25,13 +25,26 @@ function Search() {
         placeholder={`Search Recipes by ${searchType}`}
         onChange={handleChange}
       />
-      <div className="switch_outer"></div>
-      <span>Name</span>
-      <label className="switch">
-        <input type="checkbox" onClick={handleToggle} />
-        <span className="slider"></span>
-      </label>
-      <span>Tag</span>
+      <div className="switch_outer">
+        <span
+          style={
+            searchType === 'Name' ? { textShadow: '2px 2px 4px #e74c3c' } : {}
+          }
+        >
+          Name
+        </span>
+        <label className="switch">
+          <input type="checkbox" onClick={handleToggle} />
+          <span className="slider"></span>
+        </label>
+        <span
+          style={
+            searchType === 'Tag' ? { textShadow: '2px 2px 4px #e74c3c' } : {}
+          }
+        >
+          Tag
+        </span>
+      </div>
       {/* <button onClick={handleToggle} className="toggleBtn">
         Switch to search by {searchType === 'Name' ? 'Tag' : 'Name'}
       </button> */}
