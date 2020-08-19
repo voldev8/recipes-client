@@ -7,7 +7,7 @@ const NoLink = () => {
     fontWeight: '600',
   };
   return (
-    <div style={styles}>
+    <div className="container" style={styles}>
       <p>Sorry, there is not a link for this recipe!</p>
     </div>
   );

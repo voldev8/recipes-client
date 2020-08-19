@@ -45,9 +45,6 @@ function Search() {
           Tag
         </span>
       </div>
-      {/* <button onClick={handleToggle} className="toggleBtn">
-        Switch to search by {searchType === 'Name' ? 'Tag' : 'Name'}
-      </button> */}
     </div>
   );
 }

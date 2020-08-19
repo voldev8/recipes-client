@@ -1,14 +1,23 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import Input from './Input';
+import Input from '../components/Input';
+
 import RecipeContext from '../context/recipe/recipeContext';
+import AlertContext from '../context/alert/alertContext';
+import AuthContext from '../context/auth/authContext';
 
 import './RecipeForm.css';
 
 const RecipeEdit = (props) => {
   const recipeContext = useContext(RecipeContext);
   const { currentRecipe, updateRecipe } = recipeContext;
+
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
+
+  const authContext = useContext(AuthContext);
+  const { user } = authContext;
 
   const [name, setName] = useState('');
   const [ingredients, setIngredients] = useState(['']);
@@ -18,6 +27,8 @@ const RecipeEdit = (props) => {
     'https://media.istockphoto.com/vectors/smiling-chef-face-vector-id533998629?k=6&m=533998629&s=612x612&w=0&h=vnud6hVo61ORPVmLuoPOFFMHTdAyM1YorfgINRLnurY='
   );
   const [link, setLink] = useState('');
+  const [createdBy, setCreatedBy] = useState('');
+
   useEffect(() => {
     if (currentRecipe) {
       setName(currentRecipe.name);
@@ -27,22 +38,29 @@ const RecipeEdit = (props) => {
       setImage(currentRecipe.image);
       setLink(currentRecipe.link);
     }
-  }, [currentRecipe]);
+    setCreatedBy(user && user.data._id);
+  }, [currentRecipe, user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      updateRecipe({
-        id: currentRecipe._id,
-        name,
-        ingredients,
-        instructions,
-        tags: tags.map((tag) => tag.toLowerCase()),
-        image,
-        link,
-      });
-      props.history.push('/recipes');
-      window.localStorage.removeItem('edit_id');
+      //check if user is the creator
+      if (currentRecipe.createdBy === createdBy) {
+        updateRecipe({
+          id: currentRecipe._id,
+          name,
+          ingredients,
+          instructions,
+          tags: tags.map((tag) => tag.toLowerCase()),
+          image,
+          link,
+        });
+        props.history.push('/recipes');
+      } else {
+        setAlert('You can not edit this recipe.', 'add');
+        props.history.push('/');
+      }
+      localStorage.removeItem('edit_id');
     } catch (err) {
       console.log(err);
     }

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 
-import Recipe from './Recipe.js';
+import RecipeCard from './RecipeCard.js';
 import Loading from './Loading.js';
 
 import RecipeContext from '../context/recipe/recipeContext';
@@ -16,15 +16,21 @@ const RecipeList = () => {
     // eslint-disable-next-line
   }, []);
 
-  return loading ? (
-    <Loading />
-  ) : filtered === null && recipes !== null ? (
-    recipes.map((recipe) => <Recipe key={recipe._id} recipe={recipe} />)
-  ) : filtered.length === 0 ? (
-    <p className="no_match">Your search did not match any recipes.</p>
-  ) : filtered !== null ? (
-    filtered.map((recipe) => <Recipe key={recipe._id} recipe={recipe} />)
-  ) : null;
+  return (
+    <div className="container">
+      {loading ? (
+        <Loading />
+      ) : filtered === null && recipes !== null ? (
+        recipes.map((recipe) => <RecipeCard key={recipe._id} recipe={recipe} />)
+      ) : filtered.length === 0 ? (
+        <p className="no_match">Your search did not match any recipes.</p>
+      ) : filtered !== null ? (
+        filtered.map((recipe) => (
+          <RecipeCard key={recipe._id} recipe={recipe} />
+        ))
+      ) : null}
+    </div>
+  );
 };
 
 export default RecipeList;

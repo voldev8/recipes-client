@@ -1,6 +1,6 @@
 import React from 'react';
-import Search from './Search';
-import RecipeList from './RecipeList';
+import Search from '../components/Search';
+import RecipeList from '../components/RecipeList';
 
 const RecipeSearch = () => {
   return (

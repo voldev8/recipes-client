@@ -9,7 +9,7 @@
 }
 @media (max-width: 35rem) {
   .container {
-    margin: 0;
+    margin: 4rem 0 0 0;
     width: 100vw;
   }
 }

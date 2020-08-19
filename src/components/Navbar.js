@@ -1,29 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import logo from '../media/recipe-app-logo.png';
 
 import Sidebar from './Sidebar';
 import { CSSTransitionGroup } from 'react-transition-group';
 
+import AuthContext from '../context/auth/authContext';
+
 import './Navbar.css';
 
 function Navbar() {
+  const authContext = useContext(AuthContext);
+  const { isAuthenticated, logout } = authContext;
+
   const [sidebar, setSidebar] = useState(false);
   const handleClick = () => {
     setSidebar(!sidebar);
+  };
+
+  const history = useHistory();
+  const loggingOut = () => {
+    logout();
+    history.push('/');
   };
   return (
     <>
       <nav className="navbar">
         <div className="logo">
-          <a href="/recipes">
+          <a href="/">
             <img src={logo} alt="logo" />
-            <h2>Recipe-App</h2>
+            <h2>Flavorites</h2>
           </a>
         </div>
         <div className="pages">
           <a href="/recipes">Recipes</a>
           <a href="/recipe-search">Search</a>
-          <a href="/recipe-add">Add a recipe</a>
+          {isAuthenticated && (
+            <>
+              <a href="/">My Flavorites</a>
+              <a href="/recipe-add">Add a recipe</a>
+              <a href="#!" onClick={loggingOut}>
+                Logout
+              </a>
+            </>
+          )}
         </div>
         <div className="burger-menu" onClick={handleClick}>
           {!sidebar ? (

@@ -14,6 +14,9 @@
   transition: 0.6s;
   box-shadow: 1px 3px 12px #000000;
 }
+.logo h2 {
+  font-family: 'Gorditas', cursive;
+}
 .pages {
   display: flex;
   margin-right: 1rem;
@@ -34,6 +37,7 @@
   text-shadow: 2px 3px #e74c3c;
   transform: rotate(-3deg);
 }
+.pages a:nth-of-type(1):hover,
 .pages a:nth-of-type(2):hover {
   transform: rotate(3deg);
 }
