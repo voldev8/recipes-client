@@ -6,91 +6,83 @@ import Header from '../components/Header';
 import AlertContext from '../context/alert/alertContext';
 import AuthContext from '../context/auth/authContext';
 
-import './Login.css';
-
-const Login = () => {
+const ResetPass = () => {
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
 
   const authContext = useContext(AuthContext);
-  const { login, error, isAuthenticated, clearErrors } = authContext;
+  const { resetPassword, error, clearErrors, isAuthenticated } = authContext;
 
   const history = useHistory();
+  const [password, setPassword] = useState({
+    password: '',
+    password2: '',
+  });
+  const [resetToken, setResetToken] = useState('');
 
   useEffect(() => {
+    setResetToken(history.location.pathname.split('/')[2]);
     if (isAuthenticated) {
       history.push('/');
     }
-
-    if (error === 'Invalid Credentials') {
+    if (error) {
       setAlert(error, 'danger');
       clearErrors();
     }
+
     // eslint-disable-next-line
   }, [error, isAuthenticated, history]);
 
-  const [user, setUser] = useState({
-    name: '',
-    password: '',
-  });
-  const { name, password } = user;
-
   const handleChange = (e) =>
-    setUser({ ...user, [e.target.name]: e.target.value });
-
+    setPassword({ ...password, [e.target.name]: e.target.value });
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name === '' || password === '') {
-      setAlert('Please fill in all fields', 'danger');
+    if (password.password === password.password2) {
+      resetPassword(password.password, resetToken);
     } else {
-      login({
-        name,
-        password,
-      });
+      setAlert('Password do not match', 'danger');
+    }
+
+    if (!error) {
+      // setAlert('A reset password email is sent', 'danger');
     }
   };
 
   return (
     <>
-      <Header heading="Login Form" />
-      <div className="login-form-outer container">
+      <Header heading="Reset Password" />
+      <div className="container">
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="row">
-            <label htmlFor="name">
-              <p>Username:</p>
-            </label>
-            <input
-              className="recipe-input"
-              type="text"
-              name="name"
-              id="name"
-              required
-              autoFocus
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="row">
             <label htmlFor="password">
-              <p>Password:</p>{' '}
+              <p>New Password:</p>{' '}
             </label>
             <input
               className="recipe-input"
               type="password"
               name="password"
               id="password"
+              minLength="6"
               onChange={handleChange}
             />
           </div>
-
           <div className="row">
-            <a href="/forgotpass" className="forgot">
-              Forgot Password?
-            </a>
+            <label htmlFor="password2">
+              <p>Confirm Password:</p>{' '}
+            </label>
+            <input
+              className="recipe-input"
+              type="password"
+              name="password2"
+              id="password2"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="row">
             <input
               className="recipe-submit-btn"
               type="submit"
-              value="Log in!"
+              value="Confirm!"
             />
           </div>
         </form>
@@ -99,4 +91,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ResetPass;

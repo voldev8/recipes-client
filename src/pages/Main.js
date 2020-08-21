@@ -21,9 +21,8 @@ const Main = () => {
       ) : (
         <div className="main">
           <p className="info">
-            Welcome to <span>Flavorites</span>. You can browse and look for
-            recipes without login.You can add recipes or create a flavorites
-            list, if you log in.
+            Welcome to <span>Flavorites</span>. You can browse as a guest, or
+            sign up to share recipes and create your own flavorites catalog.
           </p>
           <div>
             <BigButton name={'Log in'} href="/login" />

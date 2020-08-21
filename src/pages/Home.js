@@ -3,6 +3,8 @@ import { Route } from 'react-router-dom';
 
 import Main from './Main';
 import Login from './Login';
+import ForgotPass from './ForgotPass';
+import ResetPass from './ResetPass';
 import Signup from './Signup';
 import Recipes from './Recipes';
 import RecipeAdd from './RecipeAdd';
@@ -38,6 +40,8 @@ const Home = () => {
       <Alert />
       <Route exact path="/" component={Main} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/forgotpass" component={ForgotPass} />
+      <Route exact path="/resetpassword/:resettoken" component={ResetPass} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/recipes" component={Recipes} />
       <Route exact path="/recipe-add" component={RecipeAdd} />

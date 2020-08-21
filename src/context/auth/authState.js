@@ -12,6 +12,10 @@ import {
   SIGNUP_FAIL,
   LOGIN_FAIL,
   LOGOUT,
+  FORGOT_PASS,
+  FORGOT_PASS_FAIL,
+  RESET_PASS,
+  RESET_PASS_FAIL,
   GET_FAV,
   ADD_FAV,
   REMOVE_FAV,
@@ -96,6 +100,52 @@ const AuthState = (props) => {
       console.log(err);
     }
   };
+  // Forgot Password
+  const forgotPassword = async (email) => {
+    try {
+      const res = await axios.post(
+        '/auth/forgotpassword',
+        { email },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      dispatch({
+        type: FORGOT_PASS,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: FORGOT_PASS_FAIL,
+        payload: err.response.data.error,
+      });
+    }
+  };
+
+  const resetPassword = async (password, resetToken) => {
+    try {
+      const res = await axios.put(
+        `/auth/resetpassword/${resetToken}`,
+        { password },
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch({
+        type: RESET_PASS,
+        payload: res.data,
+      });
+
+      loadUser();
+    } catch (err) {
+      dispatch({
+        type: RESET_PASS_FAIL,
+        payload: err.response.data.error,
+      });
+    }
+  };
 
   const getFav = async () => {
     try {
@@ -163,6 +213,8 @@ const AuthState = (props) => {
         signup,
         login,
         logout,
+        forgotPassword,
+        resetPassword,
         getFav,
         addFav,
         removeFav,

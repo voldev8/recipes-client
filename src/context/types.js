@@ -16,6 +16,11 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
+export const FORGOT_PASS = 'FORGOT_PASS';
+export const FORGOT_PASS_FAIL = 'FORGOT_PASS_FAIL';
+export const RESET_PASS = 'RESET_PASS';
+export const RESET_PASS_FAIL = 'RESET_PASS_FAIL';
+
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const GET_FAV = 'GET_FAV';
 export const ADD_FAV = 'ADD_FAV';
