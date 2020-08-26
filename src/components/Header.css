@@ -10,3 +10,13 @@
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
   color: #d34d16;
 }
+@media (max-width: 35rem) {
+  .heading h2 {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 30rem) {
+  .heading h2 {
+    font-size: 1.4rem;
+  }
+}
