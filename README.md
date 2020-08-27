@@ -1,68 +1,40 @@
+## Flavorites App front-end
+
+This is the front end part of a simple Recipe MERN App.
+[Back end part](https://github.com/voldev8/recipes-api)
+The Flavorites App gives you the option to browse for recipes that are created and shared by our fellow users.You can search recipes by name or tags.
+Each recipe card has two sides.On the front side you can see the picture, name, ingredients and tags of the recipe.Once you click on the card it flips
+and shows you basic instructions to prepare your food. You can also find detailed explanation and instructions of the recipes via the recipe
+link button under the card. If you are signed in, you can create your own f(l)avorites list. You can add new recipes to the database (photos can only be
+through links to external webpages), these recipes can be edited or removed by the user who created them.If you ever forgot your password, you can reset your
+password by clicking forgot password link on login page.We will you send you an email provided with a reset-password link.
+
+TL;DR
+Create, share, find recipes.Make a flavorites list of your own.
+
+## Motivation
+
+A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+
+## Screenshots
+
+Include logo/demo screenshot etc.
+
+## Tech/framework used
+
+<b>Built with</b>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+Provide step by step series of examples and explanations about how to get a development env running.
 
-### `npm start`
+## API Reference
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[Flavorites API](https://github.com/voldev8/recipes-api)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## License
 
-### `npm test`
+MIT @2020
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+MIT © Volkan Uyarer
