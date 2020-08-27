@@ -48,17 +48,21 @@ const RecipeCard = ({ recipe }) => {
               <h3 className="recipe-title">{name}</h3>
               <div className="recipe-card-ingredients">
                 <h4>Ingredients: </h4>
-                <ul className="Ingredients-list">
-                  {ingredients
-                    ? ingredients.map((ingredient, i) => (
-                        <li key={i}>{ingredient}</li>
-                      ))
-                    : ''}
+                <div className="Ingredients-list">
+                  <ul>
+                    {ingredients
+                      ? ingredients.map((ingredient, i) => (
+                          <li key={i}>{ingredient}</li>
+                        ))
+                      : ''}
+                  </ul>
+                </div>
+              </div>
+              <div className="recipe-card-tags">
+                <ul>
+                  {tags ? tags.map((tag, i) => <li key={i}>{tag}</li>) : null}
                 </ul>
               </div>
-              <ul className="recipe-card-tags">
-                {tags ? tags.map((tag, i) => <li key={i}>{tag}</li>) : null}
-              </ul>
             </div>
           </div>
           <div className="recipe-card-back">

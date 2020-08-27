@@ -5,13 +5,16 @@ import './Search.css';
 function Search() {
   const recipeContext = useContext(RecipeContext);
   const [searchType, setSearchType] = useState('Name');
+  const [searchInput, setSearchInput] = useState('');
 
   const { searchRecipeByName, searchRecipeByTag } = recipeContext;
 
   const handleToggle = () => {
+    setSearchInput('');
     searchType === 'Name' ? setSearchType('Tag') : setSearchType('Name');
   };
   const handleChange = (e) => {
+    setSearchInput(e.target.value);
     searchType === 'Tag'
       ? searchRecipeByTag(e.target.value)
       : searchRecipeByName(e.target.value);
@@ -23,6 +26,7 @@ function Search() {
         className="search"
         type="search"
         placeholder={`Search Recipes by ${searchType}`}
+        value={searchInput}
         onChange={handleChange}
       />
       <div className="switch_outer">

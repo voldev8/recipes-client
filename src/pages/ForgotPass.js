@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 import Header from '../components/Header';
 
@@ -13,7 +13,7 @@ const ForgotPass = () => {
   const authContext = useContext(AuthContext);
   const { forgotPassword, error, clearErrors } = authContext;
 
-  const history = useHistory();
+  // const history = useHistory();
   const [email, setEmail] = useState('');
 
   useEffect(() => {

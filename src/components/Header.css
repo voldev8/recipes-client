@@ -1,14 +1,18 @@
 .heading {
-  position: absolute;
-  top: 5rem;
+  padding-top: 1rem;
   text-align: center;
   width: 100%;
 }
 .heading h2 {
+  font-family: 'Lato', sans-serif;
   font-size: 2.4rem;
   font-weight: 800;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-  color: #d34d16;
+  /* text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); */
+  text-shadow: 1px 2px 4px #e74c3c, -1px -2px 4px #e74c3c;
+  color: white;
+}
+.all-recipes {
+  margin-bottom: -4rem;
 }
 @media (max-width: 35rem) {
   .heading h2 {
