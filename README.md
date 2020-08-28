@@ -12,7 +12,7 @@ Create, share, find recipes. Make a flavorites list of your own.
 
 ## Screenshots
 
-Include logo/demo screenshot etc.
+![screenshot](/src/media/flavorites_screenshot.png)
 
 ## Tech/framework used
 
@@ -20,10 +20,8 @@ Include logo/demo screenshot etc.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-"axios": http-client,
-
-"react-router-dom": routing
-
+"axios": http-client,  
+"react-router-dom": routing,  
 "react-transition-group": animations
 
 ## Installation
