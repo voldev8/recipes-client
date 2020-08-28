@@ -6,10 +6,13 @@
 .heading h2 {
   font-family: 'Lato', sans-serif;
   font-size: 2.4rem;
-  font-weight: 800;
-  /* text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); */
-  text-shadow: 1px 2px 4px #e74c3c, -1px -2px 4px #e74c3c;
-  color: white;
+  font-weight: 900;
+  /* font-style: italic; */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  color: #d34d16;
+  /* background-color: white; */
+  /* text-shadow: 2px 2px 8px #e74c3c, -2px -2px 8px #e74c3c;
+  color: white; */
 }
 .all-recipes {
   margin-bottom: -4rem;

@@ -148,6 +148,11 @@
 .recipe-submit-btn:active {
   box-shadow: none;
 }
+@media (max-width: 56rem) {
+  .recipe-input {
+    width: 55vw;
+  }
+}
 
 @media (max-width: 35rem) {
   .recipe-form-outer {

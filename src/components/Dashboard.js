@@ -27,11 +27,22 @@ const Dashboard = () => {
     favRecipeIds.includes(recipe._id)
   );
 
+  const titleCase = (str) => {
+    return str
+      .toLowerCase()
+      .split(' ')
+      .map((word) => {
+        return word.replace(word[0], word[0].toUpperCase());
+      })
+      .join(' ');
+  };
+
   return (
     <>
       <div className="dash_welcome">
         <h3 className="info">
-          Hello, {user && user.data.name}. Your <span>flavorites</span>.{' '}
+          Hello, {user && titleCase(user.data.name)}. Your{' '}
+          <span>flavorites</span>.{' '}
         </h3>
       </div>
 
