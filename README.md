@@ -10,6 +10,8 @@ TL;DR
 
 Create, share, find recipes. Make a flavorites list of your own.
 
+[Live: https://flavorites-voldev.herokuapp.com/](https://flavorites-voldev.herokuapp.com/)
+
 ## Screenshots
 
 ![screenshot](/src/media/flavorites_screenshot.png)

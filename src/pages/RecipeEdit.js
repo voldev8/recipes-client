@@ -1,5 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 import Input from '../components/Input';
 
@@ -29,6 +31,9 @@ const RecipeEdit = (props) => {
   const [link, setLink] = useState('');
   const [createdBy, setCreatedBy] = useState('');
 
+  const [uploadImage, setUpload] = useState(null);
+  const [imageId, setImageId] = useState('');
+
   useEffect(() => {
     if (currentRecipe) {
       setName(currentRecipe.name);
@@ -39,7 +44,13 @@ const RecipeEdit = (props) => {
       setLink(currentRecipe.link);
     }
     setCreatedBy(user && user.data._id);
+    setImageId(uuidv4());
   }, [currentRecipe, user]);
+
+  const handleSelectedImage = (e) => {
+    e.preventDefault();
+    setUpload(e.target.files[0]);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +66,31 @@ const RecipeEdit = (props) => {
           image,
           link,
         });
-        props.history.push('/recipes');
+        if (uploadImage) {
+          //photo upload to aws
+          let formData = new FormData();
+          formData.append(
+            'file',
+            uploadImage,
+            uploadImage.name.split('.')[0] +
+              imageId +
+              '.' +
+              uploadImage.name.split('.')[1]
+          );
+          axios
+            .post(`/recipes/photo-upload`, formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            })
+            .catch((error) => {
+              alert('Oops some error happened, please try again');
+            });
+        }
+        setAlert('Your Changes saved successfully', 'add');
+        setTimeout(() => {
+          props.history.push('/recipes');
+        }, 1500);
       } else {
         setAlert('You can not edit this recipe.', 'add');
         props.history.push('/');
@@ -105,15 +140,24 @@ const RecipeEdit = (props) => {
 
         <div className="row">
           <label htmlFor="image">
-            <p>image url:</p>{' '}
+            <p>image:</p>{' '}
           </label>
           <input
             className="recipe-input"
-            type="text"
+            type="file"
             name="image"
             id="image"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            onChange={(e) => {
+              setImage(
+                `https://flavorites.s3.amazonaws.com/${
+                  e.target.value.split('\\')[2].split('.')[0] +
+                  imageId +
+                  '.' +
+                  e.target.value.split('\\')[2].split('.')[1]
+                }`
+              );
+              handleSelectedImage(e);
+            }}
           />
         </div>
         <div className="row">

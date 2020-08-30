@@ -203,11 +203,18 @@
     font-size: 1.3rem;
     font-weight: 500;
   }
+
   .Ingredients-list {
     height: 150px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
   }
+
+  .Ingredients-list ul {
+    height: 100%;
+    width: 100%;
+  }
+
   .recipe-card-back h4 {
     font-size: 1.2rem;
   }
